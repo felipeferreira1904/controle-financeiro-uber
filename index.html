@@ -5,595 +5,107 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#0b0b0d">
 <title>Controle Uber & Contas</title>
-
 <style>
-*{box-sizing:border-box}
-body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-background:#09090b;
-color:#f5f5f5;
-}
-header{
-padding:22px 18px;
-background:linear-gradient(135deg,#111113,#1d1d20);
-border-bottom:1px solid #29292d;
-position:sticky;
-top:0;
-z-index:5;
-}
-h1{margin:0;font-size:25px}
-.sub{color:#999;font-size:13px;margin-top:5px}
-.container{padding:16px;max-width:900px;margin:auto}
-.tabs{
-display:flex;
-gap:8px;
-overflow:auto;
-margin-bottom:15px;
-}
-.tab{
-background:#1a1a1d;
-border:1px solid #303035;
-color:#ddd;
-padding:10px 14px;
-border-radius:12px;
-white-space:nowrap;
-}
-.tab.active{background:#fff;color:#000}
-.page{display:none}
-.page.active{display:block}
-.card{
-background:#141416;
-border:1px solid #29292d;
-border-radius:18px;
-padding:17px;
-margin-bottom:14px;
-box-shadow:0 5px 20px #0005;
-}
-.card h2{font-size:17px;margin:0 0 13px}
-.grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-}
-.metric{
-background:#1d1d20;
-padding:14px;
-border-radius:14px;
-}
-.metric small{color:#999}
-.metric strong{
-display:block;
-font-size:21px;
-margin-top:5px;
-}
-.progress{
-height:10px;
-background:#29292d;
-border-radius:10px;
-overflow:hidden;
-margin:10px 0;
-}
-.bar{
-height:100%;
-background:#fff;
-width:0%;
-}
-.money{font-weight:700}
-.green{color:#64e58a}
-.yellow{color:#ffd166}
-.red{color:#ff6b6b}
-button{
-border:0;
-border-radius:12px;
-padding:11px 14px;
-font-weight:700;
-cursor:pointer;
-margin:3px;
-}
-.primary{background:#fff;color:#000}
-.dark{background:#29292d;color:#fff}
-.danger{background:#4b1919;color:#fff}
-input,select{
-width:100%;
-padding:12px;
-border-radius:11px;
-border:1px solid #35353a;
-background:#0e0e10;
-color:#fff;
-margin:6px 0 10px;
-}
-.row{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
-}
-.item{
-padding:12px 0;
-border-bottom:1px solid #29292d;
-}
-.item:last-child{border-bottom:0}
-.badge{
-padding:5px 8px;
-border-radius:8px;
-background:#29292d;
-font-size:12px;
-}
-footer{
-text-align:center;
-color:#666;
-font-size:12px;
-padding:30px 10px;
-}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#09090b;color:#f5f5f5}header{padding:22px 18px;background:linear-gradient(135deg,#111113,#1d1d20);border-bottom:1px solid #29292d;position:sticky;top:0;z-index:5}h1{margin:0;font-size:25px}.sub{color:#999;font-size:13px;margin-top:5px}.container{padding:16px;max-width:900px;margin:auto}.tabs{display:flex;gap:8px;overflow:auto;margin-bottom:15px}.tab{background:#1a1a1d;border:1px solid #303035;color:#ddd;padding:10px 14px;border-radius:12px;white-space:nowrap}.tab.active{background:#fff;color:#000}.page{display:none}.page.active{display:block}.card{background:#141416;border:1px solid #29292d;border-radius:18px;padding:17px;margin-bottom:14px;box-shadow:0 5px 20px #0005}.card h2{font-size:17px;margin:0 0 13px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.metric{background:#1d1d20;padding:14px;border-radius:14px}.metric small{color:#999}.metric strong{display:block;font-size:21px;margin-top:5px}.progress{height:10px;background:#29292d;border-radius:10px;overflow:hidden;margin:10px 0}.bar{height:100%;background:#fff;width:0%}.green{color:#64e58a}.yellow{color:#ffd166}.red{color:#ff6b6b}button{border:0;border-radius:12px;padding:11px 14px;font-weight:700;cursor:pointer;margin:3px}.primary{background:#fff;color:#000}.dark{background:#29292d;color:#fff}.danger{background:#4b1919;color:#fff}.mini{padding:8px 10px;font-size:12px}input,select{width:100%;padding:12px;border-radius:11px;border:1px solid #35353a;background:#0e0e10;color:#fff;margin:6px 0 10px}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.item{padding:12px 0;border-bottom:1px solid #29292d}.item:last-child{border-bottom:0}.badge{padding:5px 8px;border-radius:8px;background:#29292d;font-size:12px}.muted{color:#999}.small{font-size:12px}.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.listbox{max-height:360px;overflow:auto}.empty{padding:14px;color:#999;text-align:center}.dangerText{color:#ff6b6b}.successText{color:#64e58a}footer{text-align:center;color:#666;font-size:12px;padding:30px 10px}.pill{display:inline-block;padding:5px 9px;border-radius:999px;background:#29292d;font-size:12px;margin:2px}.tablelike{display:grid;gap:8px}.dateLine{background:#1d1d20;border-radius:12px;padding:11px}.actions{display:flex;flex-wrap:wrap;gap:5px}.stickyNote{background:#202024;border:1px solid #333;border-radius:12px;padding:11px;color:#ccc;font-size:13px}
+@media(max-width:600px){.grid,.formgrid{grid-template-columns:1fr 1fr}.metric strong{font-size:19px}}
 </style>
 </head>
-
 <body>
-
-<header>
-<h1>🚗 Controle Uber & Contas</h1>
-<div class="sub">Produção • 99 • Combustível • Contas • Metas • Reposição</div>
-</header>
-
+<header><h1>🚗 Controle Uber & Contas</h1><div class="sub">Produção • 99 • Combustível • Contas • Metas • Reposição • Gastos</div></header>
 <div class="container">
-
 <div class="tabs">
 <button class="tab active" onclick="showPage('geral',this)">📊 Geral</button>
 <button class="tab" onclick="showPage('ciclos',this)">📅 Ciclos</button>
 <button class="tab" onclick="showPage('saldos',this)">💰 Saldos</button>
 <button class="tab" onclick="showPage('producao',this)">🚗 Produção</button>
 <button class="tab" onclick="showPage('carro',this)">⛽ Carro</button>
+<button class="tab" onclick="showPage('gastos',this)">🧾 Gastos</button>
 </div>
 
-<!-- GERAL -->
 <section id="geral" class="page active">
-
-<div class="card">
-<h2>Visão geral</h2>
-
-<div class="grid">
-<div class="metric">
-<small>Uber acumulado</small>
-<strong id="uber">R$ 1.562,20</strong>
-</div>
-
-<div class="metric">
-<small>99 acumulado</small>
-<strong id="nove">R$ 385,64</strong>
-</div>
-
-<div class="metric">
-<small>Cofrinho combustível</small>
-<strong>R$ 1.686,56</strong>
-</div>
-
-<div class="metric">
-<small>Cofrinho salário</small>
-<strong>R$ 798,07</strong>
-</div>
-</div>
-</div>
-
-<div class="card">
-<h2>🎯 Meta de reposição antiga</h2>
-
-<div class="metric">
-<small>Reposição total</small>
-<strong>R$ 2.952,97</strong>
-</div>
-
-<div class="metric">
-<small>Valor reservado atualmente</small>
-<strong id="reservaAtual">R$ 1.686,56</strong>
-</div>
-
-<div class="progress">
-<div class="bar" id="barReposicao"></div>
-</div>
-
-<div class="row">
-<span>Falta repor</span>
-<strong id="faltaReposicao">R$ 1.266,41</strong>
-</div>
-</div>
-
-<div class="card">
-<h2>💳 Mercado Pago</h2>
-
-<div class="metric">
-<small>Fatura atual</small>
-<strong>R$ 1.916,08</strong>
-</div>
-
-<p class="sub">
-Esse valor já considera a redução da fatura referente à reposição de combustível.
-</p>
-</div>
-
-<div class="card">
-<h2>⚠️ Regras do dinheiro</h2>
-
-<div class="item">⛽ Todo abastecimento deve entrar como <b>reposição futura</b>.</div>
-<div class="item">💳 Gastos no Mercado Pago Crédito também entram na reposição.</div>
-<div class="item">💰 O cofrinho de combustível é a primeira fonte para abastecimentos.</div>
-<div class="item">🔒 O salário fica protegido.</div>
-<div class="item">🚨 O cofrinho salário só deve ser usado como última opção.</div>
-</div>
-
+<div class="card"><h2>Visão geral</h2><div class="grid">
+<div class="metric"><small>Uber realizado</small><strong id="uberRealizado">R$ 1.562,20</strong></div>
+<div class="metric"><small>Uber sacado</small><strong id="uberSacado">R$ 1.557,70</strong></div>
+<div class="metric"><small>99 acumulado</small><strong id="nove">R$ 385,64</strong></div>
+<div class="metric"><small>Produção total</small><strong id="totalProd">R$ 1.947,84</strong></div>
+<div class="metric"><small>Cofrinho combustível</small><strong id="cofreComb">R$ 1.686,56</strong></div>
+<div class="metric"><small>Cofrinho salário</small><strong id="cofreSal">R$ 798,07</strong></div>
+</div></div>
+<div class="card"><h2>🎯 Reposição pendente</h2><div class="grid">
+<div class="metric"><small>Total pendente</small><strong id="repTotal">R$ 235,00</strong></div>
+<div class="metric"><small>Salário a repor</small><strong id="repSal">R$ 150,00</strong></div>
+<div class="metric"><small>Cofrinho a repor</small><strong id="repComb">R$ 85,00</strong></div>
+<div class="metric"><small>Já reposto ao Mercado Pago</small><strong>R$ 990,95</strong></div>
+</div><div class="progress"><div class="bar" id="barReposicao"></div></div><div class="row"><span>Falta repor</span><strong id="faltaReposicao">R$ 235,00</strong></div></div>
+<div class="card"><h2>💳 Mercado Pago</h2><div class="metric"><small>Fatura atual</small><strong>R$ 1.916,08</strong></div><p class="sub">Os valores de reposição ficam separados para não misturar pagamento de conta com gasto operacional.</p></div>
+<div class="card"><h2>📌 Como funciona</h2><div class="item">A produção diária é registrada por data.</div><div class="item">A meta do ciclo é recalculada conforme o que já foi feito.</div><div class="item">Você pode alterar uma conta do ciclo quando ela aumentar ou diminuir.</div><div class="item">Abastecimentos entram no histórico e viram reposição.</div><div class="item">Gastos gerais servem para acompanhar para onde o dinheiro está indo, sem virar reposição automaticamente.</div></div>
 </section>
 
-
-<!-- CICLOS -->
 <section id="ciclos" class="page">
-
-<div class="card">
-<h2>📅 Ciclo 1 — 03/10 a 10/10</h2>
-
-<div class="item">
-Santander — 06/10
-<strong>R$ 378,00</strong>
-</div>
-
-<div class="item">
-Inter — 07/10
-<strong>R$ 1.089,00</strong>
-</div>
-
-<div class="item">
-CA — 10/10
-<strong>R$ 168,00</strong>
-</div>
-
-<div class="metric">
-<small>Meta Ciclo 1</small>
-<strong>R$ 1.635,00</strong>
-</div>
-
-<div class="metric">
-<small>Meta macro a partir do Ciclo 1</small>
-<strong>R$ 8.223,09</strong>
-</div>
-</div>
-
-
-<div class="card">
-<h2>📅 Ciclo 2 — 10/10 a 17/10</h2>
-
-<div class="item">
-Mercado Pago Amanda
-<strong>R$ 1.662,77</strong>
-</div>
-
-<div class="item">
-Mercado Pago Felipe
-<strong>R$ 1.916,08</strong>
-</div>
-
-<div class="metric">
-<small>Meta Ciclo 2</small>
-<strong>R$ 3.578,85</strong>
-</div>
-
-<div class="metric">
-<small>Meta macro Ciclo 2 + 3</small>
-<strong>R$ 6.587,97</strong>
-</div>
-</div>
-
-
-<div class="card">
-<h2>📅 Ciclo 3 — 17/10 a 26/10</h2>
-
-<div class="item">
-Rose + BB / contas finais
-<strong>R$ 3.009,12</strong>
-</div>
-
-<div class="metric">
-<small>Meta Ciclo 3</small>
-<strong>R$ 3.009,12</strong>
-</div>
-</div>
-
-
-<div class="card">
-<h2>🎯 Meta Macro Outubro</h2>
-
-<div class="metric">
-<small>Ciclos 1 + 2 + 3</small>
-<strong>R$ 8.223,09</strong>
-</div>
-
-<div class="progress">
-<div class="bar" style="width:0%"></div>
-</div>
-
-<p class="sub">
-A produção Uber/99 e os saldos disponíveis serão abatidos dessa meta conforme forem realizados.
-</p>
-</div>
-
+<div class="card"><h2>📅 Metas dos ciclos</h2><div class="stickyNote">Aqui você consegue aumentar/diminuir contas, adicionar novas contas e definir a meta diária. O site recalcula o restante automaticamente.</div><div id="ciclosLista"></div><button class="primary" onclick="novoCiclo()">+ Adicionar ciclo</button></div>
+<div class="card"><h2>➕ Adicionar conta ao ciclo</h2><label>Ciclo</label><select id="contaCiclo"></select><label>Nome da conta</label><input id="contaNome" placeholder="Ex.: Mercado Pago Amanda"><label>Valor</label><input id="contaValor" type="number" step="0.01" placeholder="0,00"><label>Data de vencimento</label><input id="contaData" type="date"><button class="primary" onclick="adicionarConta()">Adicionar / atualizar</button></div>
+<div class="card"><h2>🎯 Meta diária</h2><label>Data de trabalho</label><input id="metaData" type="date"><label>Valor planejado para o dia</label><input id="metaValor" type="number" step="0.01" placeholder="Ex.: 250"><button class="primary" onclick="salvarMetaDiaria()">Salvar meta do dia</button><div id="metasLista"></div></div>
 </section>
 
-
-<!-- SALDOS -->
 <section id="saldos" class="page">
-
-<div class="card">
-<h2>💰 Cofrinho combustível</h2>
-
-<div class="metric">
-<small>Saldo atual</small>
-<strong id="cofreComb">R$ 1.686,56</strong>
-</div>
-
-<button class="primary" onclick="movimentar('comb','add')">+ Adicionar</button>
-<button class="danger" onclick="movimentar('comb','remove')">− Retirar</button>
-
-<p class="sub">
-Uso principal: combustível e gastos de operação. Todo valor retirado deverá ser reposto.
-</p>
-</div>
-
-
-<div class="card">
-<h2>🔒 Cofrinho salário</h2>
-
-<div class="metric">
-<small>Saldo atual</small>
-<strong id="cofreSal">R$ 798,07</strong>
-</div>
-
-<button class="primary" onclick="movimentar('sal','add')">+ Adicionar</button>
-<button class="danger" onclick="movimentar('sal','remove')">− Retirar</button>
-
-<p class="sub">
-Dinheiro protegido. Só utilizar quando a produção não for suficiente para cumprir uma obrigação.
-</p>
-</div>
-
-
-<div class="card">
-<h2>🔁 Reposições pendentes</h2>
-
-<div class="item">
-Combustível restante a recuperar
-<strong>R$ 275,00</strong>
-</div>
-
-<div class="item">
-Reposição do salário
-<strong>R$ 150,00</strong>
-</div>
-
-<div class="item">
-Mercado Pago — fatura atual
-<strong>R$ 1.916,08</strong>
-</div>
-</div>
-
+<div class="card"><h2>💰 Cofrinho combustível</h2><div class="metric"><small>Saldo atual</small><strong id="cofreComb2">R$ 1.686,56</strong></div><button class="primary" onclick="movimentar('comb','add')">+ Adicionar</button><button class="danger" onclick="movimentar('comb','remove')">− Retirar</button></div>
+<div class="card"><h2>🔒 Cofrinho salário</h2><div class="metric"><small>Saldo atual</small><strong id="cofreSal2">R$ 798,07</strong></div><button class="primary" onclick="movimentar('sal','add')">+ Adicionar</button><button class="danger" onclick="movimentar('sal','remove')">− Retirar</button></div>
+<div class="card"><h2>🔁 Reposição pendente</h2><div class="grid"><div class="metric"><small>Mercado Pago já reposto</small><strong>R$ 990,95</strong></div><div class="metric"><small>Restante</small><strong id="repTotal2">R$ 235,00</strong></div></div><div class="item">Salário: <strong id="repSal2">R$ 150,00</strong></div><div class="item">Cofrinho: <strong id="repComb2">R$ 85,00</strong></div><button class="dark" onclick="editarReposicao()">Editar pendências</button></div>
 </section>
 
-
-<!-- PRODUÇÃO -->
 <section id="producao" class="page">
-
-<div class="card">
-<h2>🚗 Produção Uber</h2>
-
-<div class="metric">
-<small>Segunda a sexta</small>
-<strong id="uberProd">R$ 1.562,20</strong>
-</div>
-
-<button class="primary" onclick="addProducao('uber')">+ Adicionar Uber</button>
-</div>
-
-
-<div class="card">
-<h2>🟡 Produção 99</h2>
-
-<div class="metric">
-<small>Segunda a sexta</small>
-<strong id="noveProd">R$ 385,64</strong>
-</div>
-
-<button class="primary" onclick="addProducao('99')">+ Adicionar 99</button>
-</div>
-
-
-<div class="card">
-<h2>📊 Produção total</h2>
-
-<div class="metric">
-<small>Uber + 99</small>
-<strong id="totalProd">R$ 1.947,84</strong>
-</div>
-</div>
-
+<div class="card"><h2>🚗 Produção por dia</h2><div class="grid"><div class="metric"><small>Uber realizado</small><strong id="uberProd">R$ 1.562,20</strong></div><div class="metric"><small>Uber sacado</small><strong id="uberSacadoProd">R$ 1.557,70</strong></div><div class="metric"><small>99</small><strong id="noveProd">R$ 385,64</strong></div><div class="metric"><small>Total</small><strong id="totalProd2">R$ 1.947,84</strong></div></div></div>
+<div class="card"><h2>🗓️ Registrar produção do dia</h2><label>Data</label><input id="prodData" type="date"><div class="formgrid"><div><label>Uber realizado</label><input id="prodUber" type="number" step="0.01" placeholder="0,00"></div><div><label>Uber sacado</label><input id="prodSaque" type="number" step="0.01" placeholder="0,00"></div></div><label>99</label><input id="prod99" type="number" step="0.01" placeholder="0,00"><button class="primary" onclick="registrarProducaoDia()">Registrar dia</button></div>
+<div class="card"><h2>📋 Histórico diário</h2><div id="historicoProducao" class="listbox"></div></div>
 </section>
 
-
-<!-- CARRO -->
 <section id="carro" class="page">
-
-<div class="card">
-<h2>⛽ Controle do carro</h2>
-
-<label>Quilometragem atual</label>
-<input id="km" type="number" placeholder="Ex.: 58000">
-
-<label>Valor abastecido</label>
-<input id="abastecimento" type="number" step="0.01" placeholder="Ex.: 150">
-
-<label>Fonte</label>
-<select id="fonte">
-<option>PicPay</option>
-<option>Mercado Pago Crédito</option>
-<option>Outra</option>
-</select>
-
-<button class="primary" onclick="registrarAbastecimento()">
-Registrar abastecimento
-</button>
-</div>
-
-<div class="card">
-<h2>📋 Regras do abastecimento</h2>
-<div class="item">1. Registrar quilometragem.</div>
-<div class="item">2. Registrar valor.</div>
-<div class="item">3. Informar a fonte.</div>
-<div class="item">4. O valor vira reposição.</div>
-<div class="item">5. A reposição entra no próximo ciclo.</div>
-</div>
-
+<div class="card"><h2>⛽ Abastecimentos</h2><label>Data</label><input id="abData" type="date"><label>Quilometragem atual</label><input id="km" type="number" placeholder="Ex.: 58000"><label>Valor abastecido</label><input id="abastecimento" type="number" step="0.01" placeholder="Ex.: 150"><label>Fonte</label><select id="fonte"><option>PicPay</option><option>Mercado Pago Crédito</option><option>Dinheiro</option><option>Outra</option></select><button class="primary" onclick="registrarAbastecimento()">Registrar abastecimento</button></div>
+<div class="card"><h2>🔧 Manutenções</h2><label>Data</label><input id="manData" type="date"><label>Tipo</label><input id="manTipo" placeholder="Ex.: óleo, pneu, alinhamento"><label>Valor</label><input id="manValor" type="number" step="0.01" placeholder="0,00"><label>Quilometragem</label><input id="manKm" type="number" placeholder="Ex.: 58000"><button class="primary" onclick="registrarManutencao()">Registrar manutenção</button></div>
+<div class="card"><h2>📋 Histórico do carro</h2><div id="historicoCarro" class="listbox"></div></div>
 </section>
 
-<footer>
-Controle Uber & Contas • Dados salvos neste dispositivo
-</footer>
-
+<section id="gastos" class="page">
+<div class="card"><h2>🧾 Controle geral de gastos</h2><div class="stickyNote">Aqui é só acompanhamento. Gasto geral não aumenta automaticamente nenhuma reposição.</div><label>Data</label><input id="gastoData" type="date"><label>Categoria</label><select id="gastoCat"><option>Fast food</option><option>Comida</option><option>Combustível</option><option>Hotel</option><option>Besteira</option><option>Casa</option><option>Carro</option><option>Outros</option></select><label>Descrição</label><input id="gastoDesc" placeholder="Ex.: almoço"><label>Valor</label><input id="gastoValor" type="number" step="0.01" placeholder="0,00"><button class="primary" onclick="registrarGasto()">Registrar gasto</button></div>
+<div class="card"><h2>📊 Resumo dos gastos</h2><div id="resumoGastos"></div></div>
+<div class="card"><h2>📋 Histórico</h2><div id="historicoGastos" class="listbox"></div></div>
+</section>
+<footer>Controle Uber & Contas • Dados salvos neste dispositivo</footer>
 </div>
-
-
 <script>
-
-function money(v){
-return Number(v).toLocaleString('pt-BR',{
-style:'currency',
-currency:'BRL'
-});
-}
-
-function showPage(id,btn){
-document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-btn.classList.add('active');
-}
-
-let dados={
-uber:1562.20,
-nove:385.64,
-comb:1686.56,
-sal:798.07
-};
-
-function salvar(){
-localStorage.setItem('controleUber',JSON.stringify(dados));
-}
-
-function carregar(){
-let x=localStorage.getItem('controleUber');
-if(x){
-dados=JSON.parse(x);
-}
-atualizar();
-}
-
-function atualizar(){
-
-document.getElementById('uber').innerText=money(dados.uber);
-document.getElementById('nove').innerText=money(dados.nove);
-document.getElementById('uberProd').innerText=money(dados.uber);
-document.getElementById('noveProd').innerText=money(dados.nove);
-
-let total=dados.uber+dados.nove;
-
-document.getElementById('totalProd').innerText=money(total);
-document.getElementById('cofreComb').innerText=money(dados.comb);
-document.getElementById('cofreSal').innerText=money(dados.sal);
-
-let falta=Math.max(0,2952.97-dados.comb);
-
-document.getElementById('faltaReposicao').innerText=money(falta);
-
-let pct=Math.min(100,(dados.comb/2952.97)*100);
-
-document.getElementById('barReposicao').style.width=pct+'%';
-
-document.getElementById('reservaAtual').innerText=money(dados.comb);
-}
-
-function movimentar(tipo,acao){
-
-let valor=prompt(
-acao==='add'
-?'Digite o valor que entrou:'
-:'Digite o valor retirado:'
-);
-
-valor=parseFloat(valor);
-
-if(!valor || valor<=0)return;
-
-if(tipo==='comb'){
-if(acao==='add')dados.comb+=valor;
-else{
-if(valor>dados.comb){
-alert('Saldo insuficiente.');
-return;
-}
-dados.comb-=valor;
-}
-}
-
-if(tipo==='sal'){
-if(acao==='add')dados.sal+=valor;
-else{
-if(valor>dados.sal){
-alert('Saldo insuficiente.');
-return;
-}
-dados.sal-=valor;
-}
-}
-
-salvar();
-atualizar();
-}
-
-function addProducao(tipo){
-
-let valor=prompt('Digite o valor realizado:');
-
-valor=parseFloat(valor);
-
-if(!valor || valor<=0)return;
-
-if(tipo==='uber')dados.uber+=valor;
-if(tipo==='99')dados.nove+=valor;
-
-salvar();
-atualizar();
-}
-
-function registrarAbastecimento(){
-
-let valor=parseFloat(document.getElementById('abastecimento').value);
-let fonte=document.getElementById('fonte').value;
-let km=document.getElementById('km').value;
-
-if(!valor || valor<=0){
-alert('Informe o valor do abastecimento.');
-return;
-}
-
-alert(
-'Abastecimento registrado!\\n\\n'+
-'Valor: '+money(valor)+'\\n'+
-'Fonte: '+fonte+'\\n'+
-'KM: '+(km||'não informado')+
-'\\n\\nEsse valor deverá ser reposto no próximo ciclo.'
-);
-
-document.getElementById('abastecimento').value='';
-}
-
-carregar();
-
+const money=v=>Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const today=()=>new Date().toISOString().slice(0,10);
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+function defaultData(){return {uberRealizado:1562.20,uberSacado:1557.70,nove:385.64,comb:1686.56,sal:798.07,reposicao:{sal:150,comb:85},ciclos:[{id:'c1',nome:'Ciclo 1',inicio:'2026-10-03',fim:'2026-10-10',contas:[{id:uid(),nome:'Santander',valor:378,data:'2026-10-06'},{id:uid(),nome:'Inter',valor:1089,data:'2026-10-07'},{id:uid(),nome:'CA',valor:168,data:'2026-10-10'}]},{id:'c2',nome:'Ciclo 2',inicio:'2026-10-10',fim:'2026-10-17',contas:[{id:uid(),nome:'Mercado Pago Amanda',valor:1662.77,data:'2026-10-17'}]},{id:'c3',nome:'Ciclo 3',inicio:'2026-10-17',fim:'2026-10-26',contas:[{id:uid(),nome:'Rose + BB / contas finais',valor:3009.12,data:'2026-10-26'}]}],metas:[],producao:[],abastecimentos:[],manutencoes:[],gastos:[]};}
+let dados=defaultData();
+function save(){localStorage.setItem('controleUberV2',JSON.stringify(dados));}
+function load(){let x=localStorage.getItem('controleUberV2');if(x){try{dados=Object.assign(defaultData(),JSON.parse(x));}catch(e){}} atualizar();}
+function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active');if(id==='ciclos')renderCiclos();if(id==='producao')renderProducao();if(id==='carro')renderCarro();if(id==='gastos')renderGastos();}
+function atualizar(){document.getElementById('uberRealizado').innerText=money(dados.uberRealizado);document.getElementById('uberSacado').innerText=money(dados.uberSacado);document.getElementById('nove').innerText=money(dados.nove);document.getElementById('totalProd').innerText=money(dados.uberRealizado+dados.nove);document.getElementById('cofreComb').innerText=money(dados.comb);document.getElementById('cofreSal').innerText=money(dados.sal);document.getElementById('cofreComb2').innerText=money(dados.comb);document.getElementById('cofreSal2').innerText=money(dados.sal);document.getElementById('uberProd').innerText=money(dados.uberRealizado);document.getElementById('uberSacadoProd').innerText=money(dados.uberSacado);document.getElementById('noveProd').innerText=money(dados.nove);document.getElementById('totalProd2').innerText=money(dados.uberRealizado+dados.nove);let rep=dados.reposicao.sal+dados.reposicao.comb;document.getElementById('repTotal').innerText=money(rep);document.getElementById('repSal').innerText=money(dados.reposicao.sal);document.getElementById('repComb').innerText=money(dados.reposicao.comb);document.getElementById('faltaReposicao').innerText=money(rep);document.getElementById('repTotal2').innerText=money(rep);document.getElementById('repSal2').innerText=money(dados.reposicao.sal);document.getElementById('repComb2').innerText=money(dados.reposicao.comb);document.getElementById('barReposicao').style.width=Math.min(100,(235-Math.min(235,rep))/235*100)+'%';}
+function movimentar(tipo,acao){let v=parseFloat(prompt(acao==='add'?'Digite o valor que entrou:':'Digite o valor retirado:'));if(!v||v<=0)return;if(tipo==='comb'){if(acao==='remove'&&v>dados.comb)return alert('Saldo insuficiente.');dados.comb+=acao==='add'?v:-v}else{if(acao==='remove'&&v>dados.sal)return alert('Saldo insuficiente.');dados.sal+=acao==='add'?v:-v}save();atualizar();}
+function editarReposicao(){let s=parseFloat(prompt('Quanto falta repor do salário?',dados.reposicao.sal));if(s===null||isNaN(s)||s<0)return;let c=parseFloat(prompt('Quanto falta repor do cofrinho?',dados.reposicao.comb));if(c===null||isNaN(c)||c<0)return;dados.reposicao={sal:s,comb:c};save();atualizar();}
+function cicloTotal(c){return c.contas.reduce((a,x)=>a+Number(x.valor||0),0)}
+function cicloProducao(c){return dados.producao.filter(p=>p.data>=c.inicio&&p.data<=c.fim).reduce((a,p)=>a+Number(p.uber||0)+Number(p.nove||0),0)}
+function cicloRestante(c){return Math.max(0,cicloTotal(c)-cicloProducao(c))}
+function workDays(c){let metas=dados.metas.filter(m=>m.data>=c.inicio&&m.data<=c.fim);if(metas.length)return metas.filter(m=>Number(m.valor)>0).length;let start=new Date(c.inicio+'T12:00:00'),end=new Date(c.fim+'T12:00:00'),n=0;for(let d=new Date(start);d<=end;d.setDate(d.getDate()+1)){let day=d.getDay();if(day!==0&&day!==6)n++;}return n||1}
+function renderCiclos(){let box=document.getElementById('ciclosLista');document.getElementById('contaCiclo').innerHTML=dados.ciclos.map(c=>`<option value="${c.id}">${c.nome} (${c.inicio.slice(5)} a ${c.fim.slice(5)})</option>`).join('');box.innerHTML=dados.ciclos.map(c=>{let total=cicloTotal(c),prod=cicloProducao(c),rest=cicloRestante(c),dia=rest/workDays(c),pct=total?Math.min(100,prod/total*100):0;return `<div class="card"><div class="row"><h2>📅 ${c.nome} — ${fmt(c.inicio)} a ${fmt(c.fim)}</h2><button class="danger mini" onclick="removerCiclo('${c.id}')">Excluir</button></div><div class="grid"><div class="metric"><small>Meta do ciclo</small><strong>${money(total)}</strong></div><div class="metric"><small>Produção abatida</small><strong>${money(prod)}</strong></div><div class="metric"><small>Falta no ciclo</small><strong>${money(rest)}</strong></div><div class="metric"><small>Meta por dia restante</small><strong>${money(dia)}</strong></div></div><div class="progress"><div class="bar" style="width:${pct}%"></div></div>${c.contas.map(x=>`<div class="item"><div class="row"><span>${x.nome}${x.data?' • '+fmt(x.data):''}</span><strong>${money(x.valor)}</strong></div><div class="actions"><button class="dark mini" onclick="alterarConta('${c.id}','${x.id}')">Editar valor</button><button class="danger mini" onclick="removerConta('${c.id}','${x.id}')">Remover</button></div></div>`).join('')}</div>`}).join('');renderMetas();}
+function novoCiclo(){let nome=prompt('Nome do ciclo:');if(!nome)return;let ini=prompt('Data inicial (AAAA-MM-DD):',today());let fim=prompt('Data final (AAAA-MM-DD):',ini);if(!ini||!fim)return;dados.ciclos.push({id:uid(),nome,inicio:ini,fim,contas:[]});save();renderCiclos();}
+function adicionarConta(){let cid=document.getElementById('contaCiclo').value,nome=document.getElementById('contaNome').value.trim(),v=parseFloat(document.getElementById('contaValor').value),data=document.getElementById('contaData').value;if(!cid||!nome||isNaN(v)||v<0)return alert('Preencha ciclo, nome e valor.');let c=dados.ciclos.find(x=>x.id===cid);c.contas.push({id:uid(),nome,valor:v,data});save();document.getElementById('contaNome').value='';document.getElementById('contaValor').value='';renderCiclos();}
+function alterarConta(cid,id){let c=dados.ciclos.find(x=>x.id===cid),x=c.contas.find(y=>y.id===id),v=parseFloat(prompt('Novo valor para '+x.nome+':',x.valor));if(isNaN(v)||v<0)return;x.valor=v;save();renderCiclos();}
+function removerConta(cid,id){let c=dados.ciclos.find(x=>x.id===cid);c.contas=c.contas.filter(x=>x.id!==id);save();renderCiclos();}
+function removerCiclo(id){if(!confirm('Excluir este ciclo?'))return;dados.ciclos=dados.ciclos.filter(c=>c.id!==id);save();renderCiclos();}
+function salvarMetaDiaria(){let d=document.getElementById('metaData').value,v=parseFloat(document.getElementById('metaValor').value);if(!d||isNaN(v)||v<0)return alert('Informe data e meta.');let old=dados.metas.find(x=>x.data===d);if(old)old.valor=v;else dados.metas.push({data:d,valor:v});save();renderCiclos();}
+function renderMetas(){let box=document.getElementById('metasLista');box.innerHTML=dados.metas.length?dados.metas.sort((a,b)=>a.data.localeCompare(b.data)).map(m=>`<div class="item"><div class="row"><span>${fmt(m.data)}</span><strong>${money(m.valor)}</strong></div><button class="danger mini" onclick="removerMeta('${m.data}')">Remover</button></div>`).join(''):'<div class="empty">Nenhuma meta diária cadastrada.</div>';}
+function removerMeta(d){dados.metas=dados.metas.filter(x=>x.data!==d);save();renderCiclos();}
+function registrarProducaoDia(){let d=document.getElementById('prodData').value||today(),u=parseFloat(document.getElementById('prodUber').value)||0,s=parseFloat(document.getElementById('prodSaque').value)||0,n=parseFloat(document.getElementById('prod99').value)||0;if(!u&&!s&&!n)return alert('Informe algum valor.');let old=dados.producao.find(x=>x.data===d);if(old){old.uber+=u;old.saque+=s;old.nove+=n}else dados.producao.push({id:uid(),data:d,uber:u,saque:s,nove:n});dados.uberRealizado+=u;dados.uberSacado+=s;dados.nove+=n;save();atualizar();renderProducao();}
+function renderProducao(){let box=document.getElementById('historicoProducao');box.innerHTML=dados.producao.length?dados.producao.sort((a,b)=>b.data.localeCompare(a.data)).map(p=>`<div class="dateLine"><div class="row"><strong>${fmt(p.data)}</strong><span class="pill">Uber ${money(p.uber)}</span><span class="pill">Saque ${money(p.saque)}</span><span class="pill">99 ${money(p.nove)}</span></div></div>`).join(''):'<div class="empty">Nenhuma produção diária registrada.</div>';}
+function registrarAbastecimento(){let v=parseFloat(document.getElementById('abastecimento').value),fonte=document.getElementById('fonte').value,km=document.getElementById('km').value,d=document.getElementById('abData').value||today();if(!v||v<=0)return alert('Informe o valor.');dados.abastecimentos.push({id:uid(),data:d,valor:v,fonte,km});save();document.getElementById('abastecimento').value='';document.getElementById('km').value='';renderCarro();alert('Abastecimento registrado. Valor: '+money(v));}
+function registrarManutencao(){let v=parseFloat(document.getElementById('manValor').value),tipo=document.getElementById('manTipo').value.trim(),km=document.getElementById('manKm').value,d=document.getElementById('manData').value||today();if(!v||v<=0||!tipo)return alert('Informe tipo e valor.');dados.manutencoes.push({id:uid(),data:d,valor:v,tipo,km});save();document.getElementById('manValor').value='';document.getElementById('manTipo').value='';renderCarro();}
+function renderCarro(){let a=document.getElementById('historicoCarro'),items=[...dados.abastecimentos.map(x=>({...x,tipo:'⛽ Abastecimento',desc:x.fonte,extra:'KM '+(x.km||'-')})),...dados.manutencoes.map(x=>({...x,tipo:'🔧 Manutenção',desc:x.tipo,extra:'KM '+(x.km||'-')}))].sort((x,y)=>y.data.localeCompare(x.data));a.innerHTML=items.length?items.map(x=>`<div class="dateLine"><div class="row"><strong>${fmt(x.data)}</strong><span>${x.tipo}</span><strong>${money(x.valor)}</strong></div><div class="muted small">${x.desc} • ${x.extra}</div></div>`).join(''):'<div class="empty">Nenhum registro ainda.</div>';}
+function registrarGasto(){let d=document.getElementById('gastoData').value||today(),cat=document.getElementById('gastoCat').value,desc=document.getElementById('gastoDesc').value.trim(),v=parseFloat(document.getElementById('gastoValor').value);if(!v||v<=0)return alert('Informe o valor.');dados.gastos.push({id:uid(),data:d,cat,desc,valor:v});save();document.getElementById('gastoDesc').value='';document.getElementById('gastoValor').value='';renderGastos();}
+function renderGastos(){let resumo={};dados.gastos.forEach(g=>resumo[g.cat]=(resumo[g.cat]||0)+Number(g.valor));document.getElementById('resumoGastos').innerHTML=Object.keys(resumo).length?Object.entries(resumo).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="item"><div class="row"><span>${k}</span><strong>${money(v)}</strong></div></div>`).join(''):'<div class="empty">Nenhum gasto registrado.</div>';let h=document.getElementById('historicoGastos');h.innerHTML=dados.gastos.length?dados.gastos.sort((a,b)=>b.data.localeCompare(a.data)).map(g=>`<div class="dateLine"><div class="row"><strong>${fmt(g.data)}</strong><span class="pill">${g.cat}</span><strong>${money(g.valor)}</strong></div><div class="muted small">${g.desc||'Sem descrição'}</div></div>`).join(''):'<div class="empty">Nenhum gasto registrado.</div>';}
+function fmt(d){if(!d)return '-';let [y,m,day]=d.split('-');return day+'/'+m+'/'+y;}
+load();
 </script>
-
 </body>
 </html>
